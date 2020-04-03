@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% from 'bootstrap/form.html' import render_form %}
+
+{% block title %}同学你好{% endblock %}
+
+{% block head %}
+    {{ super() }}
+    <link rel="stylesheet" href="{{ url_for('static', filename='jcrop/css/jquery.Jcrop.min.css') }}">
+{% endblock %}
+
+
+{% block content %}
+<div class="container">
+<div class="row">
+    <div class="col-2">
+        {% include 'stu/stu_sider.html' %}
+    </div>
+    <div class="col-10">
+        <div class="card w-100 bg-light">
+            <h3 class="card-header">修改头像</h3>
+            <div class="card-body">
+                {{ render_form(upload_form, action=url_for('.upload_avatar')) }}
+                <small class="text-muted">
+                    文件小于3MB，可以用jpg,png格式的图片
+                </small>
+            </div>
+            <div class="card-body">
+                {{ avatars.crop_box('index_stu.get_avatar', get_stu(current_user.id).pic) }}
+                {{ avatars.preview_box('index_stu.get_avatar', get_stu(current_user.id).pic) }}
+            </div>
+            <div class="card-body">
+                {{ render_form(crop_form, action=url_for('.crop_avatar')) }}
+             </div>
+        </div>
+
+    </div>
+</div>
+</div>
+{% endblock %}
+{% block scripts %}
+    {{ super() }}
+    <script src="{{ url_for('static', filename='jcrop/js/jquery.Jcrop.min.js') }}"></script>
+    {{ avatars.init_jcrop() }}
+{% endblock %}

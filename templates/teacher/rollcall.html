@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+
+{% block title %}点名系统后台老师界面{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <a class="btn btn-primary btn-sm" href="{{ url_for('.index_teachers') }}">返回</a>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="center">
+                    {{ render_form(form) }}
+                </div>
+            </div>
+            <div class="col-md-6">
+                <p>课程代码： {{ course_id }}</p>
+                <div class="card-img">
+                    <img src="{{ url_for('.get_img',filename=filename) }}" class="img-rounded" width="100%">
+                </div>
+                <p></p>
+                <a class="bt btn-dark btn-sm" href="{{ url_for('.get_img',filename=filename) }}">查看原图</a>
+            </div>
+        </div>
+        {% if faces %}
+            <div class="row">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>学生学号</th>
+                        <th>姓名</th>
+                        <th>照片</th>
+                        <th>识别</th>
+                        <th>是否为本人</th>
+                        <th>时间</th>
+                    </tr>
+                    </thead>
+                    {% for face in faces %}
+                        <tbody>
+                        <tr>
+                            <td>123</td>
+                            <td>yanhao</td>
+                            <td><img scr="{{ url_for('.get_img',filename=zheliyougecanshu) }}" class="img-rounded" width="10%" </td>
+                            <td><img src="{{ url_for('.get_img',filename=face) }}" class="img-rounded" width="10%"></td>
+                            <td>place</td>
+                            <td>time</td>
+                        </tr>
+                        </tbody>
+                    {% endfor %}
+                </table>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block title %}点名系统后台界面{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-2">
+                {% include 'admin/admin_sider.html' %}
+            </div>
+            <div class="col-10">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>课程ID</th>
+                        <th>课程名字</th>
+                        <th>上课地点</th>
+                        <th>开始时间</th>
+                        <th>任课老师</th>
+                        <th>选课班级</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    {% for course in courses %}
+                        <tbody>
+                        <tr>
+                            <td>{{ course.id }}</td>
+                            <td>{{ course.name }}</td>
+                            <td>{{ course.place }}</td>
+                            <td>{{ course.start_time }}</td>
+                            <td>{{ course.teacher.name }}</td>
+                            <td>{{ course.banji.name }}</td>
+                            <td>
+                                <button type="button" class="btn btn-warning btn-sm">编辑</button>
+                                <form class="inline" method="post"
+                                      action="{{ url_for('.delete_course', id=course.id) }}">
+                                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                                    <button class="btn btn-danger btn-sm"
+                                            onclick="return confirm('你确定删除{{ course.name }}课程吗?');">删除
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                        </tbody>
+                    {% endfor %}
+                </table>
+                <a class="btn btn-dark btn-sm" href="{{ url_for('.add_course') }}">添加课程</a>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

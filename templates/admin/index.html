@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %}点名系统后台界面{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h3>管理员你好</h3>
+        <div class="row">
+            <div class="col-2">
+                {% include 'admin/admin_sider.html' %}
+            </div>
+            <div class="col-10">
+                <div class="card-group">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">后台界面</h5>
+                            <p class="card-text">这里是后台界面，您发布消息在这里。</p>
+                            <p class="card-text">
+                                <small class="text-muted">Last updated 3 mins ago</small>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">This card has supporting text below as a natural lead-in to additional
+                                content.</p>
+                            <p class="card-text">
+                                <small class="text-muted">Last updated 3 mins ago</small>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                                additional content. This card has even longer content than the first to show that equal
+                                height action.</p>
+                            <p class="card-text">
+                                <small class="text-muted">Last updated 3 mins ago</small>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

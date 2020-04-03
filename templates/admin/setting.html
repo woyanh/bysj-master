@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}点名系统后台界面{% endblock %}
+
+{% block content %}
+    <div class="container">
+    <div class="row">
+        <div class="col-2">
+      {% include 'admin/admin_sider.html' %}
+    </div>
+
+        <div class="col-10">
+            <table class="table">
+				<thead>
+					<tr>
+						<th>班级名字</th>
+						<th>班级ID</th>
+						<th>学生数量</th>
+						<th>课程数量</th>
+                        <th>操作</th>
+					</tr>
+				</thead>
+                {% for banji in banjis %}
+				<tbody>
+					<tr>
+						<td>{{ banji.name }}</td>
+						<td>{{ banji.id }}</td>
+                        <td>{{ banji.students|length }}</td>
+                        <td>{{ banji.courses|length }}</td>
+                        <td>
+                            <button type="button" class="btn btn-warning btn-sm">编辑</button>
+                            <button type="button" class="btn btn-danger btn-sm">删除</button>
+                        </td>
+					</tr>
+				</tbody>
+                {% endfor %}
+			</table>
+        </div>
+    </div>
+    </div>
+
+{% endblock %}

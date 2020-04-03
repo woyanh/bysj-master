@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}点名系统后台界面{% endblock %}
+
+{% block content %}
+    <div class="container">
+    <div class="row">  <div class="col-2">
+        {% include 'admin/admin_sider.html' %}
+  </div>
+        <div class="col-10">
+            <table class="table">
+				<thead>
+					<tr>
+						<th>工号</th>
+						<th>姓名</th>
+						<th>课程数量</th>
+						<th>状态</th>
+                        <th>操作</th>
+					</tr>
+				</thead>
+                {% for teacher in teachers %}
+				<tbody>
+					<tr>
+						<td>{{ teacher.id }}</td>
+						<td>{{ teacher.name }}</td>
+						<td>{{ teacher.courses|length }}</td>
+						<td>正常</td>
+                        <td>
+                            <button type="button" class="btn btn-warning btn-sm">编辑</button>
+                            <form class="inline" method="post" action="{{ url_for('.delete_teacher', id=teacher.id) }}">
+                                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                                <button class="btn btn-danger btn-sm" onclick="return confirm('你确定删除{{ teacher.name }}老师吗?');">删除</button>
+                            </form>
+                        </td>
+					</tr>
+				</tbody>
+                {% endfor %}
+			</table>
+        <a class="btn btn-dark btn-sm" href="{{ url_for('index_admin.add_teacher') }}">添加老师</a>
+        </div>
+    </div>
+    </div>
+
+{% endblock %}

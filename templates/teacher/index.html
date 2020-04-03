@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}点名系统后台老师界面{% endblock %}
+
+{% block content %}
+    <div class="container">
+    <div class="row">
+        <div class="col-2">
+            {% include 'teacher/teacher_sider.html' %}
+        </div>
+        <div class="col-10">
+            <p>{{ get_teacher_name(current_user.id) }}老师你好，你今日课程如下：</p>
+    <table class="table table-striped">
+    <thead>
+    <tr>
+        <th>课程编号</th>
+        <th>课程名称</th>
+        <th>上课地点</th>
+        <th>上课时间</th>
+        <th>上课班级</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+     {% for courses in get_teacher_course(current_user.id) %}
+         <tr>
+            <td>{{ courses.id }}</td>
+             <td>{{ courses.name }}</td>
+             <td>{{ courses.place }}</td>
+             <td>{{ courses.start_time}}</td>
+             <td>{{ courses.banji.name }}</td>
+             <td>
+             <form class="inline" method="post"
+                  action="{{ url_for('index_teachers.rollcall',course_id = courses.id) }}">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                <button type="submit" class="btn btn-warning btn-sm">
+                    点名
+                </button>
+             </form>
+             </td>
+         </tr>
+        {% endfor %}
+    </table>
+        </div>
+    </div>
+    </div>
+
+{% endblock %}

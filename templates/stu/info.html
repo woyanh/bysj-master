@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}我的信息{% endblock %}
+
+{% block content %}
+    <div class="container">
+    <div class="row">
+        <div class="col-2">
+            {% include 'stu/stu_sider.html' %}
+        </div>
+        <div class="col-10">
+            {% if info.pic == None %}
+                <h3>请先在设置中添加你的照片</h3>
+                <p>姓名：{{ info.name }}</p>
+                <p>学号：{{ info.id }}</p>
+                <p>班级：{{ info.banji.name }}</p>
+            {% else %}
+                <p><img src="{{ url_for('index_stu.get_avatar',filename = info.pic_l) }}" ></p>
+                <p>姓名：{{ info.name }}</p>
+                <p>学号：{{ info.id }}</p>
+                <p>班级：{{ info.banji.name }}</p>
+            {% endif %}
+        </div>
+    </div>
+    </div>
+{% endblock %}

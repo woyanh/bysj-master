@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}点名系统后台界面{% endblock %}
+
+{% block content %}
+    <div class="container">
+    <div class="row">
+    <div class="col-2">
+        {% include 'admin/admin_sider.html' %}
+  </div>
+        <div class="col-10">
+            <table class="table">
+				<thead>
+					<tr>
+						<th>学生数量</th>
+						<th>老师数量</th>
+						<th>课程数量</th>
+                        <th>班级数量</th>
+						<th>其他</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>{{ stu_count }}</td>
+						<td>{{ teacher_count }}</td>
+						<td>{{ course_count }}</td>
+                        <td>{{ banji_count }}</td>
+						<td>无</td>
+					</tr>
+				</tbody>
+			</table>
+        </div>
+    </div>
+    </div>
+
+{% endblock %}
